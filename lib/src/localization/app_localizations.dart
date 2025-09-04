@@ -30,18 +30,18 @@ class AppLocalizations {
       'defaultMic': 'Padrão',
       'volume': 'Volume',
       'audioRecorded': 'Áudio gravado',
-      
+
       // Chat
       'online': 'Online',
       'typeMessage': 'Digite uma mensagem...',
       'send': 'Enviar',
-      
+
       // Errors
       'errorStartingRecording': 'Erro ao iniciar gravação',
       'errorStoppingRecording': 'Erro ao parar gravação',
       'errorPlayingAudio': 'Erro ao reproduzir áudio',
       'failedToStartRecording': 'Falha ao iniciar gravação',
-      
+
       // Configuration
       'enableAudio': 'Habilitar Áudio',
       'enableImage': 'Habilitar Imagem',
@@ -49,12 +49,13 @@ class AppLocalizations {
       'audioDescription': 'Permite gravação e envio de áudio',
       'imageDescription': 'Permite envio de imagens',
       'waitDescription': 'Bloqueia nova mensagem até receber resposta',
-      
+
       // Welcome messages
       'welcomeTitle': 'Olá seja bem vindo',
-      'welcomeSubtitle': 'Eu sou o bot que irá atender você, em que posso ajudar?',
+      'welcomeSubtitle':
+          'Eu sou o bot que irá atender você, em que posso ajudar?',
       'chatName': 'N8N Chat',
-      
+
       // Configuration Screen
       'chatConfiguration': 'Configuração do Chat',
       'restoreDefaults': 'Restaurar padrões',
@@ -109,18 +110,18 @@ class AppLocalizations {
       'defaultMic': 'Predefinido',
       'volume': 'Volume',
       'audioRecorded': 'Áudio gravado',
-      
+
       // Chat
-      'online': 'Ligado',
+      'online': 'Online',
       'typeMessage': 'Escreva uma mensagem...',
       'send': 'Enviar',
-      
+
       // Errors
       'errorStartingRecording': 'Erro ao iniciar gravação',
       'errorStoppingRecording': 'Erro ao parar gravação',
       'errorPlayingAudio': 'Erro ao reproduzir áudio',
       'failedToStartRecording': 'Falha ao iniciar gravação',
-      
+
       // Configuration
       'enableAudio': 'Activar Áudio',
       'enableImage': 'Activar Imagem',
@@ -128,12 +129,12 @@ class AppLocalizations {
       'audioDescription': 'Permite gravação e envio de áudio',
       'imageDescription': 'Permite envio de imagens',
       'waitDescription': 'Bloqueia nova mensagem até receber resposta',
-      
+
       // Welcome messages
       'welcomeTitle': 'Olá seja bem-vindo',
       'welcomeSubtitle': 'Eu sou o bot que o irá atender, em que posso ajudar?',
       'chatName': 'N8N Chat',
-      
+
       // Configuration Screen
       'chatConfiguration': 'Configuração do Chat',
       'restoreDefaults': 'Restaurar predefinições',
@@ -188,18 +189,18 @@ class AppLocalizations {
       'defaultMic': 'Default',
       'volume': 'Volume',
       'audioRecorded': 'Audio recorded',
-      
+
       // Chat
       'online': 'Online',
       'typeMessage': 'Type a message...',
       'send': 'Send',
-      
+
       // Errors
       'errorStartingRecording': 'Error starting recording',
       'errorStoppingRecording': 'Error stopping recording',
       'errorPlayingAudio': 'Error playing audio',
       'failedToStartRecording': 'Failed to start recording',
-      
+
       // Configuration
       'enableAudio': 'Enable Audio',
       'enableImage': 'Enable Image',
@@ -207,12 +208,12 @@ class AppLocalizations {
       'audioDescription': 'Allows recording and sending audio',
       'imageDescription': 'Allows sending images',
       'waitDescription': 'Blocks new message until receiving response',
-      
+
       // Welcome messages
       'welcomeTitle': 'Hello and welcome',
       'welcomeSubtitle': 'I am the bot that will assist you, how can I help?',
       'chatName': 'N8N Chat',
-      
+
       // Configuration Screen
       'chatConfiguration': 'Chat Configuration',
       'restoreDefaults': 'Restore defaults',
@@ -267,18 +268,18 @@ class AppLocalizations {
       'defaultMic': 'Predeterminado',
       'volume': 'Volumen',
       'audioRecorded': 'Audio grabado',
-      
+
       // Chat
       'online': 'En línea',
       'typeMessage': 'Escribe un mensaje...',
       'send': 'Enviar',
-      
+
       // Errors
       'errorStartingRecording': 'Error al iniciar grabación',
       'errorStoppingRecording': 'Error al detener grabación',
       'errorPlayingAudio': 'Error al reproducir audio',
       'failedToStartRecording': 'Falló al iniciar grabación',
-      
+
       // Configuration
       'enableAudio': 'Habilitar Audio',
       'enableImage': 'Habilitar Imagen',
@@ -286,12 +287,12 @@ class AppLocalizations {
       'audioDescription': 'Permite grabar y enviar audio',
       'imageDescription': 'Permite enviar imágenes',
       'waitDescription': 'Bloquea nuevo mensaje hasta recibir respuesta',
-      
+
       // Welcome messages
       'welcomeTitle': 'Hola y bienvenido',
       'welcomeSubtitle': 'Soy el bot que te atenderá, ¿en qué puedo ayudarte?',
       'chatName': 'N8N Chat',
-      
+
       // Configuration Screen
       'chatConfiguration': 'Configuración del Chat',
       'restoreDefaults': 'Restaurar valores por defecto',
@@ -340,14 +341,15 @@ class AppLocalizations {
 
   String translate(String key) {
     String localeKey = '${locale.languageCode}_${locale.countryCode}';
-    
+
     // Fallback logic
     if (_localizedStrings[localeKey]?.containsKey(key) == true) {
       return _localizedStrings[localeKey]![key]!;
     }
-    
+
     // Try language only (pt, en, es)
-    String langKey = '${locale.languageCode}_${locale.languageCode.toUpperCase()}';
+    String langKey =
+        '${locale.languageCode}_${locale.languageCode.toUpperCase()}';
     if (locale.languageCode == 'pt') {
       langKey = 'pt_BR'; // Default Portuguese to Brazil
     } else if (locale.languageCode == 'en') {
@@ -355,11 +357,11 @@ class AppLocalizations {
     } else if (locale.languageCode == 'es') {
       langKey = 'es_ES'; // Default Spanish to Spain
     }
-    
+
     if (_localizedStrings[langKey]?.containsKey(key) == true) {
       return _localizedStrings[langKey]![key]!;
     }
-    
+
     // Final fallback to pt_BR
     return _localizedStrings['pt_BR']?[key] ?? key;
   }
@@ -389,7 +391,7 @@ class AppLocalizations {
   String get welcomeTitle => translate('welcomeTitle');
   String get welcomeSubtitle => translate('welcomeSubtitle');
   String get chatName => translate('chatName');
-  
+
   // Configuration Screen getters
   String get chatConfiguration => translate('chatConfiguration');
   String get restoreDefaults => translate('restoreDefaults');
@@ -435,7 +437,8 @@ class AppLocalizations {
   String get no => translate('no');
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
