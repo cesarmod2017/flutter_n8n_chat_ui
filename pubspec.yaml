@@ -1,0 +1,38 @@
+name: flutter_n8n_chat_ui
+description: A comprehensive Flutter chat UI package designed for seamless n8n webhook integrations. Features real-time messaging with text, audio recording, image sharing, message caching, pagination, custom theming, and multilingual support across all platforms.
+version: 1.0.0
+homepage: https://github.com/cesarmod2017/flutter_n8n_chat_ui
+repository: https://github.com/cesarmod2017/flutter_n8n_chat_ui
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  intl: ^0.19.0
+  uuid: ^4.2.1
+  record: ^6.1.1
+  audioplayers: ^5.2.1
+  image_picker: ^1.0.7
+  permission_handler: ^11.3.1
+  path_provider: ^2.1.2
+  url_launcher: ^6.2.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
