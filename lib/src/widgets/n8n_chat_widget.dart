@@ -477,7 +477,7 @@ class _N8NChatWidgetState extends State<N8NChatWidget> {
     
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: widget.showHeader ? AppBar(
+      appBar: (widget.showHeader && widget.config.showAppBar) ? AppBar(
         backgroundColor: headerBackgroundColor,
         elevation: 1,
         automaticallyImplyLeading: false,

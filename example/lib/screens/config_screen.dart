@@ -22,15 +22,17 @@ class _ConfigScreenState extends State<ConfigScreen> {
   String _selectedThemeMode = 'system'; // system, light, dark
 
   // Controllers para todos os campos
-  final _webhookUrlController = TextEditingController();
-  final _cacheUrlController = TextEditingController();
+  final _webhookUrlController = TextEditingController(text: "{URL WEBHOOK}");
+  final _cacheUrlController = TextEditingController(text: "{URL CACHE}");
   final _languageController = TextEditingController(text: 'pt-BR');
   final _titleController = TextEditingController(text: 'Olá seja bem vindo');
   final _subtitleController = TextEditingController(
     text: 'Eu sou o bot que irá atender você, em que posso ajudar?',
   );
-  final _userNameController = TextEditingController();
-  final _userEmailController = TextEditingController();
+  final _userNameController = TextEditingController(text: 'Patient');
+  final _userEmailController = TextEditingController(
+    text: 'patient@example.com',
+  );
   final _chatNameController = TextEditingController(text: 'N8N Chat');
   final _hintTextController = TextEditingController(
     text: 'Digite uma mensagem...',
@@ -75,6 +77,7 @@ class _ConfigScreenState extends State<ConfigScreen> {
   bool _enableAudio = false;
   bool _enableImage = false;
   bool _waitForResponse = true;
+  bool _showAppBar = true;
 
   // Custom data controller
   final _customDataController = TextEditingController();
@@ -322,6 +325,15 @@ class _ConfigScreenState extends State<ConfigScreen> {
                 value: _waitForResponse,
                 onChanged: (value) => setState(() => _waitForResponse = value),
                 secondary: const Icon(Icons.hourglass_empty),
+              ),
+              SwitchListTile(
+                title: const Text('Show App Bar'),
+                subtitle: const Text(
+                  'Display the chat header with title and avatar',
+                ),
+                value: _showAppBar,
+                onChanged: (value) => setState(() => _showAppBar = value),
+                secondary: const Icon(Icons.title),
               ),
             ]),
             _buildSection(_localizations.customization, [
@@ -654,6 +666,7 @@ class _ConfigScreenState extends State<ConfigScreen> {
 
       _enableAudio = false;
       _enableImage = false;
+      _showAppBar = true;
       _buttonBorderRadius = 8.0;
       _customDataController.clear();
     });
@@ -817,6 +830,7 @@ class _ConfigScreenState extends State<ConfigScreen> {
       buttonBackgroundColor: _buttonBackgroundColorController.text.isNotEmpty
           ? '#${_buttonBackgroundColorController.text}'
           : null,
+      showAppBar: _showAppBar,
       customData: customData,
     );
   }

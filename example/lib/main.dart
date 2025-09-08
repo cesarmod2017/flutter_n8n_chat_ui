@@ -115,6 +115,20 @@ class ExampleListScreen extends StatelessWidget {
             icon: Icons.local_hospital,
             color: Colors.green,
           ),
+          const SizedBox(height: 16),
+          _buildExampleCard(
+            context,
+            'No Header Chat',
+            'Full screen chat without header/app bar',
+            () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NoHeaderChatExample(),
+              ),
+            ),
+            icon: Icons.fullscreen,
+            color: Colors.orange,
+          ),
         ],
       ),
     );
@@ -407,6 +421,88 @@ class HealthcareChatExample extends StatelessWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NoHeaderChatExample extends StatelessWidget {
+  const NoHeaderChatExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final config = ChatConfig(
+      webhookUrl: 'https://n8n.modspace.com.br/webhook/healthsupply_chat',
+      chatName: 'Full Screen Bot',
+      title: 'Welcome to Full Screen Chat!',
+      subtitle: 'This chat uses the full screen without header',
+      backgroundColor: '#FFFFFF',
+      backgroundChatUser: '#007AFF',
+      backgroundChatAssistant: '#F1F1F1',
+      textColor: '#000000',
+      textColorAssistant: '#333333',
+      sendButtonColor: '#007AFF',
+      hintText: 'Message...',
+      showAppBar: false, // This is the key difference!
+      profileImageUrl:
+          'https://ui-avatars.com/api/?name=FS+Bot&background=007AFF&color=ffffff&size=128',
+      enableAudio: true,
+      enableImage: true,
+    );
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          N8NChatWidget(
+            config: config,
+            onMessageSent: (message) {
+              print('No header message sent: ${message.content}');
+            },
+            onMessageReceived: (message) {
+              print('No header message received: ${message.content}');
+            },
+          ),
+          // Floating back button since there's no app bar
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 8,
+            left: 8,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.5),
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+          ),
+          // Optional floating info button
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 8,
+            right: 8,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.5),
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.info_outline, color: Colors.white),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'This chat runs in full screen mode without the app bar! '
+                        'Perfect for immersive chat experiences.',
+                      ),
+                      duration: Duration(seconds: 3),
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
         ],
       ),

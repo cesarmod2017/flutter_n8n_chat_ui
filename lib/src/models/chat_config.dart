@@ -38,6 +38,9 @@ class ChatConfig {
   final String? buttonTextColor; // Text color for buttons  
   final String? buttonBackgroundColor; // Background color for buttons
 
+  // UI visibility
+  final bool showAppBar; // Show or hide the app bar
+
   ChatConfig({
     required this.webhookUrl,
     this.cacheUrl,
@@ -71,6 +74,7 @@ class ChatConfig {
     this.buttonBorderColor,
     this.buttonTextColor,
     this.buttonBackgroundColor,
+    this.showAppBar = true,
   });
 
   factory ChatConfig.fromQueryParams(Map<String, String> params, {required String webhookUrl}) {
@@ -109,6 +113,7 @@ class ChatConfig {
       buttonBorderColor: params['buttonBorderColor'],
       buttonTextColor: params['buttonTextColor'],
       buttonBackgroundColor: params['buttonBackgroundColor'],
+      showAppBar: params['showAppBar']?.toLowerCase() != 'false',
     );
   }
 
@@ -204,6 +209,9 @@ class ChatConfig {
     }
     if (buttonBackgroundColor != null && buttonBackgroundColor!.isNotEmpty) {
       params['buttonBackgroundColor'] = buttonBackgroundColor!;
+    }
+    if (!showAppBar) {
+      params['showAppBar'] = 'false';
     }
 
     if (params.isEmpty) return '';
